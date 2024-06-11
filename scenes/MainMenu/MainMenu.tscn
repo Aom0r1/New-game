@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://chg517x3l5h38"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu/MainMenu.gd" id="1_wnncy"]
+[ext_resource type="FontFile" uid="uid://3q0psyft10b7" path="res://assets/fonts/Gagalin-Regular.otf" id="2_a6khr"]
+[ext_resource type="Theme" uid="uid://baeklov24nhop" path="res://scenes/MainMenu/MainMenuButtonTheme.tres" id="2_fh72j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74e5w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58ftw"]
+bg_color = Color(0.711146, 0.775634, 0.953946, 1)
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.634621, 0.713878, 0.938409, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yk4j"]
+bg_color = Color(0.480751, 0.58314, 0.899906, 1)
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.402509, 0.509499, 0.860401, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gt68q"]
+bg_color = Color(0.480751, 0.58314, 0.899906, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="Theme" id="Theme_gx5yk"]
+Button/constants/h_separation = 0
+Button/font_sizes/font_size = 124
+Button/fonts/font = ExtResource("2_a6khr")
+Button/styles/focus = SubResource("StyleBoxEmpty_74e5w")
+Button/styles/hover = SubResource("StyleBoxFlat_58ftw")
+Button/styles/normal = SubResource("StyleBoxFlat_2yk4j")
+Button/styles/pressed = SubResource("StyleBoxFlat_gt68q")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wnncy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -89.0
+offset_right = 149.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(149, 89)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_gx5yk")
+text = "PLAY"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -149.0
+offset_top = -289.0
+offset_right = 149.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(149, 107)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="quit" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_fh72j")
+text = "QUIT"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/quit" to="." method="_on_quit_pressed"]

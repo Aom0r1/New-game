@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://baeklov24nhop"]
+
+[ext_resource type="FontFile" uid="uid://3q0psyft10b7" path="res://assets/fonts/Gagalin-Regular.otf" id="1_ypc8a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7kbh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2b15"]
+bg_color = Color(0.711146, 0.775634, 0.953946, 1)
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.634621, 0.713878, 0.938409, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuqfm"]
+bg_color = Color(0.480751, 0.58314, 0.899906, 1)
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.402509, 0.509499, 0.860401, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+anti_aliasing_size = 1.5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qidp4"]
+bg_color = Color(0.480751, 0.58314, 0.899906, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[resource]
+Button/constants/h_separation = 0
+Button/font_sizes/font_size = 72
+Button/fonts/font = ExtResource("1_ypc8a")
+Button/styles/focus = SubResource("StyleBoxEmpty_f7kbh")
+Button/styles/hover = SubResource("StyleBoxFlat_o2b15")
+Button/styles/normal = SubResource("StyleBoxFlat_tuqfm")
+Button/styles/pressed = SubResource("StyleBoxFlat_qidp4")
