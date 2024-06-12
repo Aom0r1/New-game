@@ -1,16 +1,18 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+@export var sword = PackedScene
+@export var hp = 20
+@export var speed = 300.0
 var lastDir
 
 func _ready():
-	$AnimatedSprite2D.play("idle_down")
+	sword = preload("res://scenes/Weapons/sword.tscn")
 
 func _physics_process(delta):
 	velocity = Vector2(
 		Input.get_axis("ui_left", "ui_right"),
 		Input.get_axis("ui_up", "ui_down")
-		).normalized() * SPEED
+		).normalized() * speed
 	
 	if velocity:
 		if velocity.x > 0:
@@ -35,4 +37,22 @@ func _physics_process(delta):
 		elif lastDir == "up":
 				$AnimatedSprite2D.play("idle_up")
 	
+	if Input.is_action_just_pressed("ui_page_down"):
+		hp -= 1
+	elif Input.is_action_just_pressed("ui_page_up"):
+		hp += 1
+		
 	move_and_slide()
+	
+func _on_area_2d_body_entered(body):
+	if body.name == "mob":
+		var s = sword.instantiate()
+		get_parent().add_child(s)
+		var swordPos = position
+		swordPos.y += 38
+		s.position = swordPos
+	
+	
+
+
+

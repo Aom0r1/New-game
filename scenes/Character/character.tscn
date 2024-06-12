@@ -1,9 +1,16 @@
-[gd_scene load_steps=71 format=3 uid="uid://c5a3sul08uosc"]
+[gd_scene load_steps=78 format=3 uid="uid://c5a3sul08uosc"]
 
 [ext_resource type="Script" path="res://scripts/Character/character.gd" id="1_qadw5"]
+[ext_resource type="PackedScene" uid="uid://cywlkqowo4b0h" path="res://scenes/Weapons/sword.tscn" id="2_80ano"]
 [ext_resource type="Texture2D" uid="uid://bmyi4svu48qr2" path="res://assets/images/charactersModels/64X128_Idle_Free.png" id="2_qtg2h"]
 [ext_resource type="Texture2D" uid="uid://dcpyv63o1ch7q" path="res://assets/images/charactersModels/64X128_Runing_Free.png" id="3_n2kau"]
 [ext_resource type="Texture2D" uid="uid://dvxh5e1t0v6v7" path="res://assets/images/charactersPortrets/anna_potret.png" id="4_yh357"]
+[ext_resource type="Script" path="res://scripts/Character/HpBarCharacter.gd" id="6_3bagr"]
+[ext_resource type="FontFile" uid="uid://3q0psyft10b7" path="res://assets/fonts/Gagalin-Regular.otf" id="6_j2pq6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5om6q"]
+radius = 48.0
+height = 128.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvtp1"]
 radius = 9.0
@@ -500,8 +507,43 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoe5q"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.376471)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.435294, 0, 0.0117647, 1)
+corner_radius_top_left = 17
+corner_radius_top_right = 17
+corner_radius_bottom_right = 17
+corner_radius_bottom_left = 17
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22f6d"]
+bg_color = Color(0.739074, 0, 0.0437322, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_7ver8"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_qoe5q")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_22f6d")
+
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_qadw5")
+sword = ExtResource("2_80ano")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 38)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_5om6q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 38)
@@ -521,12 +563,35 @@ limit_top = -656
 limit_right = 2176
 limit_bottom = 1744
 position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="AnnaPotret" type="Sprite2D" parent="Camera2D/CanvasLayer"]
+texture_filter = 2
 position = Vector2(135, 162)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_yh357")
+
+[node name="HpBarCharacter" type="ProgressBar" parent="Camera2D/CanvasLayer"]
+offset_left = 316.0
+offset_top = 7.0
+offset_right = 504.0
+offset_bottom = 34.0
+theme = SubResource("Theme_7ver8")
+step = 1.0
+value = 100.0
+show_percentage = false
+script = ExtResource("6_3bagr")
+
+[node name="Label" type="Label" parent="Camera2D/CanvasLayer"]
+offset_left = 376.0
+offset_top = 4.0
+offset_right = 447.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("6_j2pq6")
+theme_override_font_sizes/font_size = 24
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
