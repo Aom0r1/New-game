@@ -464,4 +464,13 @@ position = Vector2(1016, 540)
 wall_min_slide_angle = 3.14159
 
 [node name="mob" parent="." instance=ExtResource("7_rgkqc")]
-position = Vector2(708, 397)
+position = Vector2(600, 540)
+
+[node name="mob2" parent="." instance=ExtResource("7_rgkqc")]
+position = Vector2(1363, 540)
+
+[node name="mob3" parent="." instance=ExtResource("7_rgkqc")]
+position = Vector2(715, 1078)
+
+[node name="mob4" parent="." instance=ExtResource("7_rgkqc")]
+position = Vector2(800, 1076)

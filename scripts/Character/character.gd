@@ -4,9 +4,14 @@ extends CharacterBody2D
 @export var hp = 20
 @export var speed = 300.0
 var lastDir
+var mobBody
+var mobInArea =  false
+var initialChildCount = null
+
 
 func _ready():
 	sword = preload("res://scenes/Weapons/sword.tscn")
+	initialChildCount = get_parent().get_child_count()
 
 func _physics_process(delta):
 	velocity = Vector2(
@@ -41,18 +46,27 @@ func _physics_process(delta):
 		hp -= 1
 	elif Input.is_action_just_pressed("ui_page_up"):
 		hp += 1
+	if(mobInArea):
+		hit_mob()
 		
 	move_and_slide()
 	
 func _on_area_2d_body_entered(body):
-	if body.name == "mob":
+	if body.name.begins_with("mob"):
+		mobInArea = true
+		mobBody = body
+
+
+func _on_area_2d_body_exited(body):
+	if body.name.begins_with("mob"):
+		mobInArea = false
+
+func hit_mob():
+	if(get_parent().get_child_count() <= initialChildCount):
 		var s = sword.instantiate()
 		get_parent().add_child(s)
 		var swordPos = global_position
-		var angle_rad = atan2(body.position.y - global_position.y, body.position.x - global_position.x)
-		s.rotation = angle_rad
-		swordPos.y += 38
+		var	mobAngle = atan2(mobBody.position.y - global_position.y, mobBody.position.x - global_position.x)
+		s.rotation = mobAngle
 		s.position = swordPos
-
-
 

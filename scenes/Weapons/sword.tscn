@@ -34,7 +34,6 @@ script = ExtResource("1_5yocd")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_mu3y3")
 animation = &"attack"
-frame_progress = 0.162746
 
 [node name="AreaSword" type="Area2D" parent="."]
 script = ExtResource("6_hv4sw")

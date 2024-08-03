@@ -11,6 +11,10 @@
 radius = 72.0
 height = 144.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvtp1"]
+radius = 19.74
+height = 90.31
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5mgm"]
 atlas = ExtResource("2_qtg2h")
 region = Rect2(0, 0, 64, 128)
@@ -502,10 +506,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvtp1"]
-radius = 21.0
-height = 94.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoe5q"]
 bg_color = Color(0.0705882, 0.0705882, 0.0705882, 0.376471)
 border_width_left = 4
@@ -543,15 +543,15 @@ sword = ExtResource("2_80ano")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_5om6q")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nvtp1")
+debug_color = Color(0.793007, 0.353089, 0.623221, 0.42)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
 sprite_frames = SubResource("SpriteFrames_73x53")
 animation = &"running_down"
 frame_progress = 0.196101
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_nvtp1")
-debug_color = Color(0.793007, 0.353089, 0.623221, 0.42)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -224
@@ -585,3 +585,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
