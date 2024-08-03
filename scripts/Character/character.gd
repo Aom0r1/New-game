@@ -48,11 +48,11 @@ func _on_area_2d_body_entered(body):
 	if body.name == "mob":
 		var s = sword.instantiate()
 		get_parent().add_child(s)
-		var swordPos = position
+		var swordPos = global_position
+		var angle_rad = atan2(body.position.y - global_position.y, body.position.x - global_position.x)
+		s.rotation = angle_rad
 		swordPos.y += 38
 		s.position = swordPos
-	
-	
 
 
 

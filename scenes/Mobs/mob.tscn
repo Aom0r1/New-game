@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c5jj0telistcj"]
+[gd_scene load_steps=20 format=3 uid="uid://c5jj0telistcj"]
 
 [ext_resource type="Script" path="res://scripts/Mobs/mob.gd" id="1_0hats"]
 [ext_resource type="Texture2D" uid="uid://bfk0lcimmg6or" path="res://assets/images/mobs/Goblin Mech Rider Sprite Sheet.png" id="1_rqfqc"]
@@ -80,7 +80,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_45r8v")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 12.0
 }, {
@@ -115,20 +115,34 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmskw"]
-radius = 5.99999
-height = 56.0
+radius = 20.0
+height = 86.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4l6x"]
+radius = 52.0
+height = 108.0
 
 [node name="mob" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_0hats")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -47)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0germ")
-animation = &"running"
-frame_progress = 0.694176
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 90)
-rotation = -1.5708
 shape = SubResource("CapsuleShape2D_lmskw")
-debug_color = Color(0, 0.640007, 0.356363, 0.42)
+one_way_collision_margin = 0.0
+debug_color = Color(0.811765, 0, 0.25098, 0.631373)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 48)
+shape = SubResource("CapsuleShape2D_t4l6x")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

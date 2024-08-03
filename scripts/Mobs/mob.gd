@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-@export var hp = 10
+var pos = self.global_position
+
+@export var hp = 9999
 @export var speed = 200.0
 
 func _ready():
@@ -21,4 +23,11 @@ func _physics_process(delta):
 		await $AnimatedSprite2D.animation_finished
 		queue_free()
 	
+	
+	
 	move_and_slide()
+
+		
+func _on_area_2d_area_entered(area):
+	if area.name == "AreaSword":
+		hp -= area.dmg
