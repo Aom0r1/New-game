@@ -8,8 +8,8 @@
 [ext_resource type="FontFile" uid="uid://3q0psyft10b7" path="res://assets/fonts/Gagalin-Regular.otf" id="6_j2pq6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5om6q"]
-radius = 72.0
-height = 144.0
+radius = 58.0
+height = 116.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvtp1"]
 radius = 19.74
@@ -554,6 +554,7 @@ animation = &"running_down"
 frame_progress = 0.196101
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 limit_left = -224
 limit_top = -656
 limit_right = 2176
@@ -584,5 +585,16 @@ text = "100/100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="Label2" type="Label" parent="Camera2D/CanvasLayer"]
+visible = false
+offset_left = 1733.0
+offset_top = 7.0
+offset_right = 1785.0
+offset_bottom = 37.0
+scale = Vector2(2.44542, 2.12862)
+theme_override_fonts/font = ExtResource("6_j2pq6")
+theme_override_font_sizes/font_size = 24
+text = "1000"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

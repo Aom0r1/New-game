@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://daylfeppk802n"]
+
+[ext_resource type="Texture2D" uid="uid://b8o7tkipo7bqf" path="res://assets/images/weapons/Arrows_pack.png" id="1_phfpq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4hpl"]
+atlas = ExtResource("1_phfpq")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gs0hg"]
+atlas = ExtResource("1_phfpq")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfgsf"]
+atlas = ExtResource("1_phfpq")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omiw3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4hpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gs0hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfgsf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6ybl"]
+size = Vector2(33, 7)
+
+[node name="bow" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(0.0732422, 0.0732422)
+sprite_frames = SubResource("SpriteFrames_omiw3")
+animation = &"idle"
+frame_progress = 0.273243
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.5, -5.5)
+shape = SubResource("RectangleShape2D_k6ybl")

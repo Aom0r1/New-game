@@ -2,16 +2,16 @@ extends CharacterBody2D
 
 var pos = self.global_position
 
-@export var hp = 25
+@export var hp = 20
 @export var speed = 200.0
 
 func _ready():
 	$AnimatedSprite2D.play("running")
 
-func _physics_process(delta):
-	#var character = $"../Character"
-	#var direction = (character.position - self.position).normalized()
-	#velocity = direction * speed
+func _physics_process(_delta):
+	var character = $"../Character"
+	var direction = (character.position - self.position).normalized()
+	velocity = direction * speed
 	
 	if velocity.x < 0:
 		$AnimatedSprite2D.set_flip_h(true)	
