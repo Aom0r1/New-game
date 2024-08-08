@@ -6,7 +6,7 @@ extends Node2D
 var enemyType = typeof(enemy)
 
 func _ready():
-	enemy = preload("res://scenes/Mobs/mob.tscn")
+	enemy = preload("res://zombikMob.tscn")
 	add_enemy()
 
 func add_enemy():
@@ -17,7 +17,7 @@ func add_enemy():
 
 func check_cords(cords: Vector2):
 	for e in get_parent().get_children():
-		if(typeof(e) == enemyType):
+		if(e is iMob):
 			if(abs(cords.x - e.position.x) <= 50):
 				return false
 			if(abs(cords.y - e.position.y) <= 50):

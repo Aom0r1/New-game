@@ -1,65 +1,66 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5jj0telistcj"]
+[gd_scene load_steps=21 format=3 uid="uid://djo3ff53hetuu"]
 
-[ext_resource type="Script" path="res://scripts/Mobs/mob.gd" id="1_0hats"]
-[ext_resource type="Texture2D" uid="uid://bfk0lcimmg6or" path="res://assets/images/mobs/Goblin Mech Rider Sprite Sheet.png" id="1_rqfqc"]
+[ext_resource type="PackedScene" uid="uid://bkcee8v17glci" path="res://iMob.tscn" id="1_wj3nw"]
+[ext_resource type="Script" path="res://zombikMob.gd" id="2_p5am1"]
+[ext_resource type="Texture2D" uid="uid://bfk0lcimmg6or" path="res://assets/images/mobs/Goblin Mech Rider Sprite Sheet.png" id="3_i1bf7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtq3l"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(0, 384, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cyjsn"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(160, 384, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv255"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(320, 384, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0lsmj"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(480, 384, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4mxoe"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(640, 384, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_45r8v"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(800, 384, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_utnm7"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(0, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7iq2j"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(160, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xnut1"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(320, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cbeeu"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(480, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nybkd"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(640, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohu8j"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(800, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pn6c8"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(960, 96, 160, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0a6fh"]
-atlas = ExtResource("1_rqfqc")
+atlas = ExtResource("3_i1bf7")
 region = Rect2(1120, 96, 160, 96)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_0germ"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hj0s2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -114,35 +115,28 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmskw"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tlx0y"]
 radius = 20.0
 height = 86.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t4l6x"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_rch8n"]
 radius = 52.0
-height = 108.0
 
-[node name="mob" type="CharacterBody2D"]
-motion_mode = 1
-script = ExtResource("1_0hats")
+[node name="CharacterBody2D" instance=ExtResource("1_wj3nw")]
+script = ExtResource("2_p5am1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -47)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_0germ")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(-1, -40)
+scale = Vector2(2.01, 2)
+sprite_frames = SubResource("SpriteFrames_hj0s2")
 animation = &"running"
-frame_progress = 0.884455
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_lmskw")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-2, 8)
+scale = Vector2(1.004, 1)
+shape = SubResource("CapsuleShape2D_tlx0y")
 debug_color = Color(0.811765, 0, 0.25098, 0.631373)
 
-[node name="mob" type="Area2D" parent="."]
-position = Vector2(0, -47)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mob"]
-position = Vector2(0, 48)
-shape = SubResource("CapsuleShape2D_t4l6x")
-
-[connection signal="area_entered" from="mob" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="mob" to="." method="_on_mob_body_entered"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="mob" index="0"]
+position = Vector2(-4, 8)
+shape = SubResource("CircleShape2D_rch8n")

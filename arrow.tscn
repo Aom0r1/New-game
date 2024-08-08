@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://dcm3rsrmhhgai"]
+
+[ext_resource type="PackedScene" uid="uid://crq0gxra388nc" path="res://projectile.tscn" id="1_38o3g"]
+[ext_resource type="Script" path="res://arrow.gd" id="2_vyepi"]
+[ext_resource type="Texture2D" uid="uid://djnxsuo65mo2m" path="res://assets/images/weapons/fireball/B500-2.PNG" id="3_rnfg3"]
+[ext_resource type="Texture2D" uid="uid://cpm5s12d5jlsj" path="res://assets/images/weapons/fireball/B500-3.PNG" id="4_d3q8y"]
+[ext_resource type="Texture2D" uid="uid://ybk26le6cb7t" path="res://assets/images/weapons/fireball/B500-4.PNG" id="5_frric"]
+[ext_resource type="Texture2D" uid="uid://ddpfmb7bfmdh8" path="res://assets/images/weapons/fireball/FB500-1.png" id="6_niaor"]
+[ext_resource type="Texture2D" uid="uid://bwaesy7adhlgq" path="res://assets/images/weapons/fireball/FB500-2.png" id="7_es8ue"]
+[ext_resource type="Texture2D" uid="uid://ccdgmmjn5pfrs" path="res://assets/images/weapons/fireball/FB500-3.png" id="8_bwgga"]
+[ext_resource type="Texture2D" uid="uid://do8fip1pkrm3y" path="res://assets/images/weapons/fireball/FB500-4.png" id="9_3amvm"]
+[ext_resource type="Texture2D" uid="uid://cvgu8ekd7tb7p" path="res://assets/images/weapons/fireball/FB500-5.png" id="10_r4rdy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qkxj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rnfg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_d3q8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_frric")
+}],
+"loop": false,
+"name": &"babah",
+"speed": 12.98
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_niaor")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_es8ue")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bwgga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3amvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r4rdy")
+}],
+"loop": true,
+"name": &"letit",
+"speed": 11.41
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5gvn"]
+size = Vector2(25, 22.5)
+
+[node name="arrow" instance=ExtResource("1_38o3g")]
+script = ExtResource("2_vyepi")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(0.0726319, 0.069433)
+sprite_frames = SubResource("SpriteFrames_5qkxj")
+animation = &"babah"
+
+[node name="weapon#CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(-0.5, -0.25)
+shape = SubResource("RectangleShape2D_s5gvn")
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

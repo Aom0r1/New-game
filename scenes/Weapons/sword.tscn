@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cywlkqowo4b0h"]
+[gd_scene load_steps=8 format=3 uid="uid://cxcr033qd08p"]
 
-[ext_resource type="Script" path="res://scripts/Weapons/sword.gd" id="1_5yocd"]
 [ext_resource type="Texture2D" uid="uid://bui0u64sbo6nw" path="res://assets/images/weapons/NPT100.png" id="1_ap487"]
+[ext_resource type="Script" path="res://animation.gd" id="1_jtcn8"]
 [ext_resource type="Texture2D" uid="uid://dyxqp1gm32exy" path="res://assets/images/weapons/NPT101.png" id="2_u8q2o"]
 [ext_resource type="Texture2D" uid="uid://b54utrllj8rlp" path="res://assets/images/weapons/NPT102.png" id="3_cjgg5"]
 [ext_resource type="Texture2D" uid="uid://c4dpana5fs73s" path="res://assets/images/weapons/NPT103.png" id="4_reaqo"]
-[ext_resource type="Script" path="res://scripts/Weapons/AreaSword.gd" id="6_hv4sw"]
+[ext_resource type="Script" path="res://animationArea.gd" id="6_lte3c"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mu3y3"]
 animations = [{
@@ -28,15 +28,17 @@ animations = [{
 }]
 
 [node name="Sword" type="Node2D"]
-script = ExtResource("1_5yocd")
+script = ExtResource("1_jtcn8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_mu3y3")
 animation = &"attack"
+frame = 3
+frame_progress = 1.0
 
 [node name="AreaSword" type="Area2D" parent="."]
-script = ExtResource("6_hv4sw")
+script = ExtResource("6_lte3c")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaSword"]
 polygon = PackedVector2Array(-49, -21, -34, -34, -3, -48, 32, -49, 50, -34, 64, -7, 41, 33, 17, 44, -36, 46, -57, 25, -23, 33, 0, 29, 19, 14, 36, -3, 29, -25, 9, -33, -9, -31)

@@ -14,20 +14,20 @@ func _physics_process(_delta):
 	velocity = direction * speed
 	
 	if velocity.x < 0:
-		$AnimatedSprite2D.set_flip_h(true)	
+		$AnimatedSprite2D.set_flip_h(true)
 	elif velocity.x > 0:
 		$AnimatedSprite2D.set_flip_h(false)
 	
-	if hp == 0:
+	if hp < 0:
 		$AnimatedSprite2D.play("death")
 		await $AnimatedSprite2D.animation_finished
 		queue_free()
-	
 	
 	
 	move_and_slide()
 
 		
 func _on_area_2d_area_entered(area):
-	if area.name == "AreaSword":
+	if area is Projectile:
 		hp -= area.dmg
+

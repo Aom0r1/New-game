@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4patxkq6q36p"]
+
+[ext_resource type="PackedScene" uid="uid://chx3lxrujcjnr" path="res://i_weapon.tscn" id="1_y1ikg"]
+[ext_resource type="Script" path="res://Sword.gd" id="2_ug35f"]
+[ext_resource type="PackedScene" uid="uid://d2q4wv3wf3fk3" path="res://swordAnimation.tscn" id="3_keefl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mreak"]
+radius = 61.8142
+
+[node name="Sword" instance=ExtResource("1_y1ikg")]
+script = ExtResource("2_ug35f")
+animationScene = ExtResource("3_keefl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_mreak")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

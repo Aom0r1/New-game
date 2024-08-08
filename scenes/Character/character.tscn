@@ -1,19 +1,69 @@
-[gd_scene load_steps=77 format=3 uid="uid://c5a3sul08uosc"]
+[gd_scene load_steps=87 format=3 uid="uid://c5a3sul08uosc"]
 
 [ext_resource type="Script" path="res://scripts/Character/character.gd" id="1_qadw5"]
-[ext_resource type="PackedScene" uid="uid://cywlkqowo4b0h" path="res://scenes/Weapons/sword.tscn" id="2_80ano"]
 [ext_resource type="Texture2D" uid="uid://bmyi4svu48qr2" path="res://assets/images/charactersModels/64X128_Idle_Free.png" id="2_qtg2h"]
 [ext_resource type="Texture2D" uid="uid://dcpyv63o1ch7q" path="res://assets/images/charactersModels/64X128_Runing_Free.png" id="3_n2kau"]
+[ext_resource type="Texture2D" uid="uid://bui0u64sbo6nw" path="res://assets/images/weapons/NPT100.png" id="3_xt2wx"]
+[ext_resource type="Texture2D" uid="uid://dyxqp1gm32exy" path="res://assets/images/weapons/NPT101.png" id="4_ggr12"]
+[ext_resource type="Texture2D" uid="uid://b54utrllj8rlp" path="res://assets/images/weapons/NPT102.png" id="5_0tjs6"]
 [ext_resource type="Script" path="res://scripts/Character/HpBarCharacter.gd" id="6_3bagr"]
 [ext_resource type="FontFile" uid="uid://3q0psyft10b7" path="res://assets/fonts/Gagalin-Regular.otf" id="6_j2pq6"]
+[ext_resource type="Texture2D" uid="uid://c4dpana5fs73s" path="res://assets/images/weapons/NPT103.png" id="6_s2qng"]
+[ext_resource type="PackedScene" uid="uid://c4patxkq6q36p" path="res://sword.tscn" id="7_shfpc"]
+[ext_resource type="PackedScene" uid="uid://cg2d0qosxk7wf" path="res://bow.tscn" id="13_ku7o3"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5om6q"]
-radius = 58.0
-height = 116.0
+[sub_resource type="GDScript" id="GDScript_sfmrg"]
+script/source = "
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mu3y3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xt2wx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ggr12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0tjs6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s2qng")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_berah"]
+script/source = "extends Area2D
+
+var dmg = 5
+var critulya = null
+
+"
+
+[sub_resource type="PackedScene" id="PackedScene_6bjjd"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Sword", "script", "Node2D", "AnimatedSprite2D", "scale", "sprite_frames", "animation", "frame", "frame_progress", "AreaSword", "Area2D", "CollisionPolygon2D", "polygon"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 5, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 0, 0, 0, 10, 9, -1, 1, 1, 6, 0, 2, 0, 11, 11, -1, 1, 12, 7, 0),
+"variants": [SubResource("GDScript_sfmrg"), Vector2(0.25, 0.25), SubResource("SpriteFrames_mu3y3"), &"attack", 3, 1.0, SubResource("GDScript_berah"), PackedVector2Array(-49, -21, -34, -34, -3, -48, 32, -49, 50, -34, 64, -7, 41, 33, 17, 44, -36, 46, -57, 25, -23, 33, 0, 29, 19, 14, 36, -3, 29, -25, 9, -33, -9, -31)],
+"version": 3
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nvtp1"]
 radius = 19.74
 height = 90.31
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aylia"]
+radius = 16.0
+height = 80.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5mgm"]
 atlas = ExtResource("2_qtg2h")
@@ -533,19 +583,23 @@ corner_radius_bottom_left = 15
 ProgressBar/styles/background = SubResource("StyleBoxFlat_qoe5q")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_22f6d")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0idww"]
+radius = 148.003
+
 [node name="Character" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_qadw5")
-sword = ExtResource("2_80ano")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_5om6q")
+sword = SubResource("PackedScene_6bjjd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_nvtp1")
 debug_color = Color(0.793007, 0.353089, 0.623221, 0.42)
+
+[node name="hitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("CapsuleShape2D_aylia")
+one_way_collision_margin = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 2
@@ -554,7 +608,6 @@ animation = &"running_down"
 frame_progress = 0.196101
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 limit_left = -224
 limit_top = -656
 limit_right = 2176
@@ -596,5 +649,17 @@ theme_override_fonts/font = ExtResource("6_j2pq6")
 theme_override_font_sizes/font_size = 24
 text = "1000"
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="Sword" parent="." instance=ExtResource("7_shfpc")]
+position = Vector2(1, 2)
+
+[node name="bow" parent="." instance=ExtResource("13_ku7o3")]
+position = Vector2(0, -3)
+
+[node name="xpPickUpArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="xpPickUpArea"]
+shape = SubResource("CircleShape2D_0idww")
+
+[connection signal="area_entered" from="hitBox" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="xpPickUpArea" to="." method="_on_xp_pick_up_area_area_entered"]
+[connection signal="area_exited" from="xpPickUpArea" to="." method="_on_xp_pick_up_area_area_exited"]

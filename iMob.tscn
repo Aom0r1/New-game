@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkcee8v17glci"]
+
+[ext_resource type="Script" path="res://iMob.gd" id="1_n226k"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_n226k")
+
+[node name="mob" type="Area2D" parent="."]
+
+[node name="ColorTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="mob" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="ColorTimer" to="." method="_on_color_timer_timeout"]
