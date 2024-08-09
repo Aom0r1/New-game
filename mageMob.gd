@@ -5,7 +5,7 @@ var bulik = preload("res://purple.tscn")
 
 
 enum states{
-	attack, runningFrom, runningTo, idle
+	attack, runningFrom, runningTo, castingSpell
 }
 
 
@@ -21,6 +21,7 @@ func _ready():
 	baseDamage = 1
 	evaisonChance = 5
 	armor = 1
+	team = teamNumber.mob
 
 func die():
 	dropXp()
@@ -37,7 +38,7 @@ func logic(_delta):
 		direction = character.global_position.direction_to(global_position)
 	elif(state == states.attack):
 		$CoolDownTimer.start(3)
-		state = states.idle
+		state = states.castingSpell
 		
 	velocity = direction * speed
 	
@@ -45,28 +46,30 @@ func logic(_delta):
 		$AnimatedSprite2D.set_flip_h(true)	
 	elif velocity.x > 0:
 		$AnimatedSprite2D.set_flip_h(false)
-		
-	if(state == states.idle):
+	elif(state == states.castingSpell):
 		$AnimatedSprite2D.play("idle")
+		
 		
 	move_and_slide()
 
 func isPlayerToClose():
-	if(state == states.attack || state == states.idle):
+	if(state == states.castingSpell):
 		return
-		
-	if(global_position.distance_to(character.position) < 500):
+	
+	if(global_position.distance_to(character.position) < 400):
 		state = states.runningFrom
-	else:
+	elif(global_position.distance_to(character.position) > 550):
 		state = states.runningTo
-
+	else:
+		state = states.attack
 
 
 func _on_cool_down_timer_timeout():
 	var bulikInstance = bulik.instantiate()
 	bulikInstance.target = character.global_position
-	bulikInstance.dmg = 12
+	bulikInstance.dmg = 3
+	bulikInstance.team = team
 	bulikInstance.global_position = global_position
 	get_parent().add_child(bulikInstance)
-	state = states.attack
-	
+	state = states.runningFrom
+	$CoolDownTimer.stop()

@@ -21,7 +21,6 @@ func _physics_process(delta):
 
 func _on_area_entered(area):
 	if(area.name == "mob"):
-		$"weapon#CollisionShape2D".disabled = true
 		$Timer.start(0.01)
 		isMobReached = true
 		
@@ -29,6 +28,7 @@ func _on_area_entered(area):
 
 func _on_timer_timeout():
 	if(isMobReached):
+		$"weapon#CollisionShape2D".disabled = true
 		$AnimatedSprite2D.play("babah")
 		await $AnimatedSprite2D.animation_finished
 	queue_free()

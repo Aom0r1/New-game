@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 
 class_name iMob
 
@@ -48,7 +48,7 @@ func calculateRealDamage(dmg):
 	return result
 
 func _on_area_2d_area_entered(area):
-	if area is Projectile && area.team != "yaMob":
+	if area is Projectile && area.team != team:
 		if(!isDead && area != knockBackProjectile):
 			if(!knockBackPos):
 				knockBackProjectile = area

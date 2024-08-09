@@ -43,6 +43,7 @@ func shoot_nearest_targets():
 			arrow.target = nearestTarget.global_position
 			arrow.dmg = calculateDamage()
 			arrow.global_position = global_position
+			arrow.team = owner.team
 			get_parent().get_parent().add_child(arrow)
 			
 	$Timer.start(cooldown)

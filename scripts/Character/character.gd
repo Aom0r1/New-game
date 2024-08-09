@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 
 
 var fps_label: Label
@@ -11,8 +11,10 @@ var xpsInRange = {}
 
 
 
+
 func _ready():
 	fps_label = $Camera2D/CanvasLayer/Label2
+	team = teamNumber.player
 	
 
 func _process(delta):
@@ -54,9 +56,7 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("ui_page_up"):
 		hp += 1
 	
-	
 	$Sword.hit()
-	$bow.hit()
 	move_and_slide()
 
 
@@ -69,6 +69,8 @@ func _on_area_2d_area_entered(area):
 		print(xpAmount)
 	elif(area.name == "mob"):
 		hp -= area.owner.baseDamage
+	elif(area is Projectile && area.team != team):
+		hp -= area.dmg
 
 		
 	
