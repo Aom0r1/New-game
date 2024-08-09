@@ -3,7 +3,7 @@ extends iMob
 var character = null
 
 
-func _ready():
+func ready():
 	character = $"../Character"
 	$AnimatedSprite2D.play("running")
 	hp = 20

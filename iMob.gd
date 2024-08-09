@@ -21,15 +21,18 @@ var knockBackPos = null
 var knockBackDir = null
 var knockBackProjectile = null
 
+func _ready():
+	team = teamNumber.mob
+	ready()
+
+func ready():
+	pass
 
 func _process(delta):
 	if(!isDead):
-		if(knockBackPos):
-			if(global_position.distance_to(knockBackPos) < 1):
-				knockBackPos = null
-				knockBackDir = null
-			else:
-				global_position += delta * knockBackDir * speed / 2
+		if(knockBackDir):
+			velocity = knockBackDir * (speed/1.75)
+			move_and_slide()
 		else:
 			logic(delta)
 
@@ -50,10 +53,10 @@ func calculateRealDamage(dmg):
 func _on_area_2d_area_entered(area):
 	if area is Projectile && area.team != team:
 		if(!isDead && area != knockBackProjectile):
-			if(!knockBackPos):
+			if(!knockBackDir):
 				knockBackProjectile = area
 				knockBackDir = area.global_position.direction_to(global_position)
-				knockBackPos = global_position + (knockBackDir * area.knockBack)
+				$KnockBackTimer.start(area.knockBack)
 			hp -= area.dmg
 			showDmgLabel(calculateRealDamage(area.dmg))
 			modulate = Color('red')
@@ -105,3 +108,8 @@ func dropXp():
 
 func _on_color_timer_timeout():
 	modulate = standartModulate
+
+
+func _on_knock_back_timer_timeout():
+	knockBackDir = null
+	

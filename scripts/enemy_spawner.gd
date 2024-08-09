@@ -3,17 +3,23 @@ extends Node2D
 @export var enemy = PackedScene
 @export var cooldown = 5
 @export var spawn_area_size = Vector2(1916, 1465)
-var enemyType = typeof(enemy)
+
+var enemies = [{"chance": 10, "scene": preload("res://mageMob.tscn")}, {"chance": 100, "scene": preload("res://zombikMob.tscn")}]
+
 
 func _ready():
-	enemy = preload("res://zombikMob.tscn")
 	add_enemy()
 
 func add_enemy():
-	var enemyInstance = enemy.instantiate()
-	enemyInstance.position = await get_random_cords()
-	get_parent().add_child(enemyInstance)
-	$Timer.start(cooldown)
+	
+	var randNum = randi() % 100
+	for enemy in enemies: 
+		if(randNum <= enemy["chance"]):
+			var enemyInstance = enemy["scene"].instantiate()
+			enemyInstance.position = await get_random_cords()
+			get_parent().add_child(enemyInstance)
+			$Timer.start(cooldown)
+			break
 
 func check_cords(cords: Vector2):
 	for e in get_parent().get_children():

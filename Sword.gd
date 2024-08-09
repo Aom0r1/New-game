@@ -31,7 +31,7 @@ func attack_nearest_target():
 	if nearestTarget and swordInstance == null:
 		swordInstance = animationScene.instantiate()
 		swordInstance.dmg = calculateDamage()
-		swordInstance.knockBack = 30
+		swordInstance.knockBack = 0.3
 		swordInstance.team = owner.team
 		get_parent().get_parent().add_child(swordInstance)
 		if swordInstance != null:

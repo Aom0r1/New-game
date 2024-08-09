@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cwtdxqwrlt83q" path="res://assets/images/tilesets/plains.png" id="4_yecyu"]
 [ext_resource type="Texture2D" uid="uid://wustj68n0016" path="res://assets/images/tilesets/walls.png" id="5_xr53h"]
 [ext_resource type="PackedScene" uid="uid://c5a3sul08uosc" path="res://scenes/Character/character.tscn" id="6_67gdq"]
-[ext_resource type="PackedScene" uid="uid://btgg17p5ks83y" path="res://mageMob.tscn" id="7_y6pp5"]
+[ext_resource type="PackedScene" uid="uid://be85a2c0ch483" path="res://scenes/Levels/enemy_spawner.tscn" id="8_wll6f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lounh"]
 texture = ExtResource("1_2mdks")
@@ -462,5 +462,4 @@ layer_1/tile_data = PackedInt32Array(6160505, 4, 2, 6160384, 4, 2, -1769472, 4, 
 [node name="Character" parent="." instance=ExtResource("6_67gdq")]
 position = Vector2(396, 1016)
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("7_y6pp5")]
-position = Vector2(845, 543)
+[node name="EnemySpawner" parent="." instance=ExtResource("8_wll6f")]

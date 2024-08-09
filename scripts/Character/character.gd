@@ -7,7 +7,7 @@ var fps_label: Label
 @export var speed = 300.0
 var lastDir
 var xpAmount = 0
-var xpsInRange = {}
+
 
 
 
@@ -56,6 +56,7 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("ui_page_up"):
 		hp += 1
 	
+	$bow.hit()
 	$Sword.hit()
 	move_and_slide()
 

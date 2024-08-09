@@ -11,17 +11,17 @@ enum states{
 
 var state = states.attack
 
-func _ready():
+func ready():
 	character = $"../Character"
 	$AnimatedSprite2D.play("running")
 	hp = 40
 	maxHp = 40
 	speed = 200
 	xp = 83
-	baseDamage = 1
+	baseDamage = 0
 	evaisonChance = 5
 	armor = 1
-	team = teamNumber.mob
+	
 
 func die():
 	dropXp()
