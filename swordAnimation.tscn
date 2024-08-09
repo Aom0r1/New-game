@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2q4wv3wf3fk3"]
+[gd_scene load_steps=8 format=3 uid="uid://dyv8nlhd6eivj"]
 
-[ext_resource type="PackedScene" uid="uid://crq0gxra388nc" path="res://projectile.tscn" id="1_1kvlg"]
+[ext_resource type="PackedScene" uid="uid://dkwxqjofyfpjd" path="res://projectile.tscn" id="1_1kvlg"]
 [ext_resource type="Script" path="res://swordAnimationMazafak.gd" id="2_0vkvb"]
 [ext_resource type="Texture2D" uid="uid://bui0u64sbo6nw" path="res://assets/images/weapons/NPT100.png" id="2_6fi23"]
 [ext_resource type="Texture2D" uid="uid://dyxqp1gm32exy" path="res://assets/images/weapons/NPT101.png" id="3_uw0um"]

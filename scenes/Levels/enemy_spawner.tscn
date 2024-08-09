@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://be85a2c0ch483"]
+[gd_scene load_steps=2 format=3 uid="uid://be85a2c0ch483"]
 
 [ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="1_8gn0m"]
-[ext_resource type="PackedScene" uid="uid://c5jj0telistcj" path="res://scenes/Mobs/mob.tscn" id="2_hj8l8"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_8gn0m")
-enemy = ExtResource("2_hj8l8")
-cooldown = 1
 
-[node name="Timer" type="Timer" parent="."]
+[node name="z_cooldown" type="Timer" parent="."]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="m_cooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="z_cooldown" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="m_cooldown" to="." method="_on_m_cooldown_timeout"]

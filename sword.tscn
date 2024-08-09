@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4patxkq6q36p"]
+[gd_scene load_steps=5 format=3 uid="uid://bngn133byaiqf"]
 
-[ext_resource type="PackedScene" uid="uid://chx3lxrujcjnr" path="res://i_weapon.tscn" id="1_y1ikg"]
+[ext_resource type="PackedScene" uid="uid://bmmmody8hovjx" path="res://i_weapon.tscn" id="1_y1ikg"]
 [ext_resource type="Script" path="res://Sword.gd" id="2_ug35f"]
-[ext_resource type="PackedScene" uid="uid://d2q4wv3wf3fk3" path="res://swordAnimation.tscn" id="3_keefl"]
+[ext_resource type="PackedScene" uid="uid://dyv8nlhd6eivj" path="res://swordAnimation.tscn" id="3_keefl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mreak"]
 radius = 61.8142

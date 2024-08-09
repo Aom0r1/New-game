@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://scripts/Character/HpBarCharacter.gd" id="6_3bagr"]
 [ext_resource type="FontFile" uid="uid://3q0psyft10b7" path="res://assets/fonts/Gagalin-Regular.otf" id="6_j2pq6"]
 [ext_resource type="Texture2D" uid="uid://c4dpana5fs73s" path="res://assets/images/weapons/NPT103.png" id="6_s2qng"]
-[ext_resource type="PackedScene" uid="uid://c4patxkq6q36p" path="res://sword.tscn" id="7_shfpc"]
-[ext_resource type="PackedScene" uid="uid://cg2d0qosxk7wf" path="res://bow.tscn" id="13_ku7o3"]
+[ext_resource type="PackedScene" uid="uid://bngn133byaiqf" path="res://sword.tscn" id="7_shfpc"]
+[ext_resource type="PackedScene" uid="uid://coyca5h3xexx7" path="res://bow.tscn" id="13_ku7o3"]
 
 [sub_resource type="GDScript" id="GDScript_sfmrg"]
 script/source = "
@@ -639,7 +639,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Camera2D/CanvasLayer"]
-visible = false
 offset_left = 1733.0
 offset_top = 7.0
 offset_right = 1785.0

@@ -130,8 +130,7 @@ script = ExtResource("1_0hats")
 position = Vector2(0, -47)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0germ")
-animation = &"running"
-frame_progress = 0.884455
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_lmskw")
@@ -145,4 +144,3 @@ position = Vector2(0, 48)
 shape = SubResource("CapsuleShape2D_t4l6x")
 
 [connection signal="area_entered" from="mob" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="mob" to="." method="_on_mob_body_entered"]

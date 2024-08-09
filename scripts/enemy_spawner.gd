@@ -1,19 +1,31 @@
 extends Node2D
 
-@export var enemy = PackedScene
-@export var cooldown = 5
+@export var mageMob = PackedScene
+@export var zombikMob = PackedScene
+@export var zCooldown = 5
+@export var mCooldown = 15
 @export var spawn_area_size = Vector2(1916, 1465)
-var enemyType = typeof(enemy)
+var enemyType = typeof(zombikMob)
 
 func _ready():
-	enemy = preload("res://zombikMob.tscn")
-	add_enemy()
+	mageMob = preload("res://mageMob.tscn")
+	zombikMob = preload("res://zombikMob.tscn")
+	add_zombikMob()
+	add_mageMob()
 
-func add_enemy():
-	var enemyInstance = enemy.instantiate()
-	enemyInstance.position = await get_random_cords()
-	get_parent().add_child(enemyInstance)
-	$Timer.start(cooldown)
+func add_zombikMob():
+	var zombikMobInstance = zombikMob.instantiate()
+	zombikMobInstance.position = await get_random_cords()
+	get_parent().add_child(zombikMobInstance)
+	$z_cooldown.start(zCooldown)
+
+func add_mageMob():
+	var mageMobInstance = mageMob.instantiate()
+	mageMobInstance.position = await get_random_cords()
+	get_parent().add_child(mageMobInstance)
+	$m_cooldown.start(mCooldown)
+	
+	
 
 func check_cords(cords: Vector2):
 	for e in get_parent().get_children():
@@ -32,4 +44,7 @@ func get_random_cords():
 	return cords
 
 func _on_timer_timeout():
-	add_enemy()
+	add_zombikMob()
+
+func _on_m_cooldown_timeout():
+	add_mageMob()

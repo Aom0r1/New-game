@@ -1,15 +1,11 @@
 extends Entity
 
-
 var fps_label: Label
 @export var sword = PackedScene
 @export var hp = 20
 @export var speed = 300.0
 var lastDir
 var xpAmount = 0
-var xpsInRange = {}
-
-
 
 
 func _ready():
